@@ -1,0 +1,10 @@
+#data_file.txt:
+#You have to input with form described below
+
+name: Name(Less than 20 alphabets)
+birthday: dd-mm-yyyy
+gender: F for Female or M for Male
+register_day: dd-mm-yyyy
+end_date: dd-mm-yyyy
+
+#end of file, you have to leave a blank line
