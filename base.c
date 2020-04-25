@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "base.h"
+#include "extras.h"
 
 // Function: add_a_record()
 // Input: NODE* head - No empty Space
@@ -62,19 +63,14 @@ void add_a_record(NODE* head){
 		NODE *newNode = malloc(sizeof(NODE)); //new space for record
 		fgets(temp.name,20,mem_f);
 		temp.name[strlen(temp.name) - 1] = '\0';
-
 		fgets(temp.birthday,12,mem_f);
 		temp.birthday[strlen(temp.birthday) - 1] = '\0';
-
 		temp.gender=fgetc(mem_f);
 		fgetc(mem_f);
-
 		fgets(temp.register_day,12,mem_f);
 		temp.register_day[strlen(temp.register_day) - 1] = '\0';
-
 		fgets(temp.end_date,12,mem_f);
 		temp.end_date[strlen(temp.end_date) - 1] = '\0';
-
 		if(feof(mem_f))	{
 			free(newNode);
 		}
@@ -99,7 +95,7 @@ void add_a_record(NODE* head){
 // Input: NODE* head; No empty space 
 // Output: none
 // - Leave a brief information about the function
-// From print all elements head to tail(NULL)
+// print all elements from head to tail(NULL)
 void print_all_records(NODE* head){
 	if(head->link == NULL){ // If there is not any record
 		printf("\nThere is not any member! Input first!\n");
@@ -115,14 +111,17 @@ void print_all_records(NODE* head){
 	}
 }
 
-// NOT Completed yet
+// Function: change_memberdata()
+// Input: NODE* head; No empty space 
+// Output: none
+// - Leave a brief information about the function
+// Change data of a record
 void change_memberdata(NODE* head){
 	char name[20];
-	int count=0;
 	printf("Please input name to find: ");
 	scanf("%s",name);
 	getchar(); // Buffer clear
-	
+
 	for(NODE* t=head->link; t!=NULL; t=t->link){
 		if(!strcmp(t->member.name, name)){
 			printf("\n%s, %s, %c, %s, %s\n",t->member.name, t->member.birthday, t->member.gender, t->member.register_day, t->member.end_date);
@@ -187,6 +186,55 @@ void change_memberdata(NODE* head){
 			}
 		}
 	}
+}
+// Function: add_end_date()
+// Input: NODE* head; No empty space 
+// Output: none
+// - Leave a brief information about the function
+// add end date one month all records or records corresponding name
+void add_end_date(NODE* head){
+	char name[20];
+	int n =0;
+	printf("Please input name to add one month(* to add all): ");
+	scanf("%s",name);
+	getchar(); // Buffer clear
+
+	for(NODE* t=head->link; t!=NULL; t=t->link){
+		if(!strcmp(name,"*")){
+			int date_arr[3];
+			strdate_to_intdate(t->member.end_date,date_arr);
+			date_arr[1] +=1;
+			if(date_arr[1] >12){
+				date_arr[1] -=12;
+				date_arr[2] +=1;
+			}
+			sprintf(t->member.end_date,"%02d.%02d.%d",date_arr[0],date_arr[1],date_arr[2]);
+			printf("Success!\n");
+			n++;
+		}
+		else if(!strcmp(t->member.name, name)){
+			printf("\n%s, %s, %c, %s, %s\n",t->member.name, t->member.birthday, t->member.gender, t->member.register_day, t->member.end_date);
+			char choose;
+			printf("Is He/She right?(Y/N): ");
+			scanf("%c",&choose);
+			getchar(); // Buffer Clear
+			if(choose == 'N')
+				continue;
+			int date_arr[3];
+			strdate_to_intdate(t->member.end_date,date_arr);
+			date_arr[1] +=1;
+			if(date_arr[1] >12){
+				date_arr[1] -=12;
+				date_arr[2] +=1;
+			}
+			sprintf(t->member.end_date,"%02d.%02d.%02d",date_arr[0],date_arr[1],date_arr[2]);
+			printf("Success!\n");
+			n++;	
+		}		
+	}
+	if(n == 0)
+		printf("Fail!\n");
+	return;
 }
 
 // Function: delete_member()

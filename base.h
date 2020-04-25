@@ -8,6 +8,7 @@
 void add_a_record(NODE*);
 void print_all_records(NODE*);
 void change_memberdata(NODE*);
+void add_end_date(NODE*);
 void delete_member(NODE*);
 void end_member(NODE*);
 void show_member(NODE*);
