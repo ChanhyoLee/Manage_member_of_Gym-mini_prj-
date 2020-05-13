@@ -264,8 +264,9 @@ void delete_member(NODE* head){
 	}
 
 	else{
-		for(NODE* t=head; t->link!=NULL; t=t->link){
-			if(!strcmp(t->link->member.name, name)){ // Find name
+		NODE* t=head;
+		while(t->link!=NULL){
+			if(!strcmp(t->link->member.name, name)){
 				printf("\n%s, %s, %c, %s, %s\n",t->link->member.name, t->link->member.birthday, t->link->member.gender, t->link->member.register_day, t->link->member.end_date);
 
 				printf("Do you really want to delete?\nTo continue .. press Y: "); // Confirm
@@ -283,11 +284,16 @@ void delete_member(NODE* head){
 				}
 				else {
 					printf("You choose to keep\n"); // Cancel
+					t=t->link;
 				}
+			}
+			else{
+				t = t->link;
 			}
 		}
 	}
 }
+
 // Function: end_member()
 // Input: NODE* head; No empty space 
 // Output: none
