@@ -41,11 +41,11 @@
 
 > +**How to input**
 >> You can input data from single_data_file.txt, data_file.txt or keyboard.
->> Here is a input format.
-Name: *Full name*
-Birthday: *dd.mm.yyyy*
-Gender: *F for female/M for Male*
-Register_date: *dd.mm.yyyy*
-End_date: *dd.mm.yyyy*
+>> Here is a input format
+>>> Name: *Full name*  
+>>> Birthday: *dd.mm.yyyy*  
+>>> Gender: *F for female/M for Male*  
+>>> Register_date: *dd.mm.yyyy*  
+>>> End_date: *dd.mm.yyyy*  
 
 >>> You have to input a single empty line end of data file!!!
