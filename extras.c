@@ -297,3 +297,159 @@ int compare_str_date(char date1[], char date2[]){
 		return answer;
 	}
 }
+//new function (delete all but (2))
+void delete_all_but(NODE* head){
+	if(head->link == NULL){ // If there is not any record
+		printf("\nThere is not any member! Input first!\n");
+		return;
+	}
+	int count=0;
+	char input1[20];
+  	char input2[20];
+  	char gender;
+	char Y_N = 'N';
+	printf("Condition type\nChoose from(name, birthday, register_day, end_date, gender): ");
+	scanf("%s",input1);
+	getchar(); // Buffer clear
+  	NODE* t=head;
+  	if(!strcmp(input1, "name")){
+    		printf("Enter name: ");
+    		scanf("%s", input2);
+    		getchar();
+    		printf("Deleting all entries without name: %s\n", input2);
+    		printf("Are you sure?('Y' for yes 'N' for no): ");
+    		scanf("%c",&Y_N);
+    		getchar();  // Buffer clear
+    		if(Y_N == 'Y'){ // Delete a record
+			while(t->link!=NULL){
+        			if(strcmp(t->link->member.name, input2)){
+          				NODE *temp = malloc(sizeof(NODE));
+			    		temp=t->link;
+          				t->link = t->link->link;
+					free(temp);
+          				if(t->link==NULL)
+						break;
+        			}
+        			else{
+					t = t->link;
+			  	}
+      			}
+      			printf("Delete Success!\n");
+		}
+		else {
+			printf("You choose to keep\n"); // Cancel
+		}
+  	}
+  	else if(!strcmp(input1, "birthday")){
+		printf("Enter birthday: ");
+    		scanf("%s", input2);
+    		getchar();
+    		printf("Deleting all entries without birthday: %s\n", input2);
+    		printf("Are you sure?('Y' for yes 'N' for no): ");
+    		scanf("%c",&Y_N);
+    		getchar();  // Buffer clear
+    		if(Y_N == 'Y'){ // Delete a record
+      			while(t->link!=NULL){
+        			if(strcmp(t->link->member.birthday, input2)){
+          				NODE *temp = malloc(sizeof(NODE));
+			    		temp=t->link;
+          				t->link = t->link->link;
+					free(temp);
+          				if(t->link==NULL)
+						break;
+        			}
+        			else{
+				  	t = t->link;
+			  	}
+      			}
+      			printf("Delete Success!\n");
+		}
+		else {
+			printf("You choose to keep\n"); // Cancel
+		}
+  	}
+  	else if(!strcmp(input1, "register_day")){
+    		printf("Enter register_day: ");
+    		scanf("%s", input2);
+    		getchar();
+    		printf("Deleting all entries without register_day: %s\n", input2);
+    		printf("Are you sure?('Y' for yes 'N' for no): ");
+    		scanf("%c",&Y_N);
+    		getchar();  // Buffer clear
+    		if(Y_N == 'Y'){ // Delete a record
+      			while(t->link!=NULL){
+        			if(strcmp(t->link->member.register_day, input2)){
+          				NODE *temp = malloc(sizeof(NODE));
+			    		temp=t->link;
+          				t->link = t->link->link;
+					free(temp);
+          				if(t->link==NULL)
+						break;
+        				}
+        			else{
+				  	t = t->link;
+			  	}
+      			}
+      			printf("Delete Success!\n");
+		}
+		else {
+			printf("You choose to keep\n"); // Cancel
+		}
+  	}
+  	else if(!strcmp(input1, "end_date")){
+    		printf("Enter end_date: ");
+    		scanf("%s", input2);
+    		getchar();
+    		printf("Deleting all entries without end_date: %s\n", input2);
+    		printf("Are you sure?('Y' for yes 'N' for no): ");
+    		scanf("%c",&Y_N);
+    		getchar();  // Buffer clear
+    		if(Y_N == 'Y'){ // Delete a record
+      			while(t->link!=NULL){
+        			if(strcmp(t->link->member.end_date, input2)){
+          				NODE *temp = malloc(sizeof(NODE));
+			    		temp=t->link;
+          				t->link = t->link->link;
+					free(temp);
+          				if(t->link==NULL)
+						break;
+        			}
+        			else{
+				  	t = t->link;
+			  	}
+      			}
+      			printf("Delete Success!\n");
+		}
+		else {
+			printf("You choose to keep\n"); // Cancel
+		}
+  	}
+  	else if(!strcmp(input1, "gender")){
+    		printf("Enter gender: ");
+    		scanf("%s", input2);
+    		getchar();
+    		printf("Deleting all entries without gender: %s\n", input2);
+    		printf("Are you sure?('Y' for yes 'N' for no): ");
+    		scanf("%c",&Y_N);
+    		getchar();  // Buffer clear
+    		if(Y_N == 'Y'){ // Delete a record
+      			while(t->link!=NULL){
+        			if(strcmp(&t->link->member.gender, input2)){
+          				NODE *temp = malloc(sizeof(NODE));
+			    		temp=t->link;
+          				t->link = t->link->link;
+					free(temp);
+          				if(t->link==NULL)
+						break;
+        			}
+        			else{
+				  	t = t->link;
+			  	}
+      			}
+      			printf("Delete Success!\n");
+		}
+		else {
+			printf("You choose to keep\n"); // Cancel
+		}
+  	}
+}
