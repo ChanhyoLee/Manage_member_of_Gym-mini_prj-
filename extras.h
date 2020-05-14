@@ -12,5 +12,5 @@ int* strdate_to_intdate(char[], int[]);
 void stat_age(int[], NODE*);
 void stat_gender(int[], NODE*);
 int compare_str_date(char[], char[]);
-
+void delete_all_but(NODE*); //new function
 #endif
