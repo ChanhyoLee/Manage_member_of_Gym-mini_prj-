@@ -14,7 +14,7 @@
 }*/
 
 // Function: sort()
-// Input: NODE* head; No empty space 
+// Input: NODE* head; No empty space
 // Output: none
 // - Leave a brief information about the function
 // Sort all Records by Name, Age, Period
@@ -34,7 +34,7 @@ void sort(NODE* head){
 					t->link->member = k->link->member;
 					k->link->member = temp_member;
 				}
-			}	
+			}
 		}
 		printf("\nSorted by Name success!\n");
 	}
@@ -47,7 +47,7 @@ void sort(NODE* head){
 					t->link->member = k->link->member;
 					k->link->member = temp_member;
 				}
-			}	
+			}
 		}
 		printf("\nSorted by Age success!\n");
 	}
@@ -60,10 +60,10 @@ void sort(NODE* head){
 					t->link->member = k->link->member;
 					k->link->member = temp_member;
 				}
-			}	
+			}
 		}
-		printf("\nSorted by Period success!\n");	
-	}		
+		printf("\nSorted by Period success!\n");
+	}
 	else{
 		printf("\nWrong input! Go to main..\n");
 		return;
@@ -71,7 +71,7 @@ void sort(NODE* head){
 }
 
 // Function: display_stats()
-// Input: NODE* head; No empty space 
+// Input: NODE* head; No empty space
 // Output: none
 // - Leave a brief information about the function
 // Display Statistics of Age, Gender, Used Term
@@ -102,7 +102,7 @@ void display_stats(NODE* head){
 // TODO: Add more functions to fulfill the optional requirements
 
 // Function: count()
-// Input: NODE* head; No empty space 
+// Input: NODE* head; No empty space
 // Output: none
 // - Leave a brief information about the function
 // Count number of members in memory now
@@ -152,12 +152,14 @@ int* strdate_to_intdate(char date[], int *date_array){
 // show statistics about age
 void stat_age(int *count_age, NODE* head){
 	float total=0;
+	int count =0;
+	int total_age =0;
 	for(NODE* t=head->link; t!=NULL; t=t->link){
 		total = total +1;
 		int date_array[3];
 		strdate_to_intdate(t->member.birthday, date_array);
 		struct tm* t; // Use time.h
-		const time_t current = time(NULL);	
+		const time_t current = time(NULL);
 		t = localtime(&current); // today
 		int crr_date[3];
 		crr_date[0]=t->tm_mday;
@@ -173,6 +175,9 @@ void stat_age(int *count_age, NODE* head){
 			else
 				member_age++;
 		}
+		count++;
+		total_age += member_age; //나이의 평균값 구하기
+
 		member_age = member_age/10;
 		switch(member_age){
 			case 1:
@@ -200,7 +205,9 @@ void stat_age(int *count_age, NODE* head){
 	printf("\n__________________________\n");
 	printf("    10s 20s 30s 40s+ Unit\n");
 	printf("Num %3d %3d %3d %4d each\n",count_age[0],count_age[1],count_age[2],count_age[3]);
-	printf("Per %3.0f %3.0f %3.0f %4.0f %%",per_age[0],per_age[1],per_age[2],per_age[3]);
+	printf("Per %3.0f %3.0f %3.0f %4.0f %%\n",per_age[0],per_age[1],per_age[2],per_age[3]);
+	printf("Average_age : %d",total_age/count);
+
 	printf("\n--------------------------\n");
 }
 
@@ -287,7 +294,7 @@ int compare_str_date(char date1[], char date2[]){
 	else if(year1 == year2 && month1 == month2 && day1 > day2){
 		answer =1;
 		return answer;
-	}	
+	}
 	else if (year1 == year2 && month1 == month2 && day1 == day2){
 		answer =0;
 		return answer;
